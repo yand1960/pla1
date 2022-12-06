@@ -19,14 +19,19 @@ print("---------------------------------------------------")
 
 # Список словарей
 people = [
-    {
-        "lastName": "Andrienko",
-        "firstName": "Yuri",
-        "salary": 123456},
-
+    {"lastName": "Andrienko", "firstName": "Yuri", "salary": 123456},
     {"lastName": "Pupkun", "firstName": "Vasya", "salary": 77777},
     {"lastName": "Andrey", "firstName": "Andreev", "salary": 300000}
 ]
 
 for p in people:
-    print(f"{p['lastName']}\t {p['firstName']}\t has salary\t{p['salary']}")
+    print(f"{p['lastName']} {p['firstName']} has salary {p['salary']}")
+
+
+# Найти максимальную зарплату у people (11:50)
+candidate = 0
+for p in people:
+    if p["salary"] > candidate:
+        candidate = p["salary"]
+print(candidate)
+
