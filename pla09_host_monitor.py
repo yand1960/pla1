@@ -28,5 +28,11 @@ if __name__ == "__main__":
         hosts = f.read().split("\n")
 
     while True:
-        check_hosts(hosts, "data/log1.txt")
+        try:
+            check_hosts(hosts, "data/log1.txt")
+        except Exception as e:
+            with open("data/log2.txt", "a", encoding="utf-8") as f:
+                print(f"{dt.now()}\t Cбой прогаммы\n{e} ")
+                f.write(f"{dt.now()}\t Cбой прогаммы\n{e} \n")
         time.sleep(10)
+
