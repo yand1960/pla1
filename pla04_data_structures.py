@@ -35,3 +35,12 @@ for p in people:
         candidate = p["salary"]
 print(candidate)
 
+# Как имеющиеся у нас данные открыть в Экселе
+import os
+
+with open("data/people.csv", "w") as f:
+    for p in people:
+        f.write(f"{p['lastName']};{p['firstName']};{p['salary']}\n")
+
+cmd = "start excel data\\people.csv"
+os.system(cmd)
