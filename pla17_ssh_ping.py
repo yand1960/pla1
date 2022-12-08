@@ -1,7 +1,7 @@
 from paramiko import SSHClient
 import paramiko
 
-hosts = ["127.0.0.1", "ya.ru",  "bad.bad", "172.24.239.255"]
+hosts = ["127.0.0.1", "ya.ru",  "bad.bad", "172.24.224.1"]
 
 with SSHClient() as client:
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
