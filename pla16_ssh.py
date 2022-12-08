@@ -24,8 +24,8 @@ with SSHClient() as client:
         # 2.1 Получаем файл с целевого хоста
         ftp.chdir("c:\\tmp") # на целевом хосте
         ftp.get("config.txt", "data\\config.txt")
-        # 2.2 Редактируем это файл
-        text = "I am Yuri Andienko from ssh client"
+        # 2.2 Редактируем этот файл
+        text = "I am Yuri Andrienko from ssh client"
         with open("data/config.txt", "w") as f:
             f.write(text)
         # 2.3 Копируем измененный файл на целевой хост
