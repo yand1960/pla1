@@ -17,7 +17,7 @@ MAX_PRICE = 1000
 # MAX_PRICE = input("Введите максимальную цену: ")
 
 # Вариант 3 - параметры указываются в командной строке
-if len(sys.orig_argv) >= 3:
+if len(sys.argv) >= 3:
     MIN_PRICE = sys.argv[1]
     MAX_PRICE = sys.argv[2]
 else:
