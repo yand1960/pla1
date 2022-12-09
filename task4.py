@@ -8,6 +8,10 @@
 # 3. Внутри этого цикла подать (в зависимости от типа операционной системы)
 # команду и из текста результата ее выполнения вычленить интерeсующий нас адрес
 
+from paramiko import SSHClient
+import paramiko
+import re
+
 with open("data/ssh_servers.txt") as f:
     text = f.read()
 lines = text.split("\n")
@@ -20,5 +24,30 @@ for line in lines:
     port = params[2]
     user = params[3]
     password = params[4]
-    print(server, os_type, port, user, password)
+    # print(server, os_type, port, user, password)
+
+    try:
+        with SSHClient() as client:
+            client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
+            client.connect(
+                hostname=server,
+                port=port,
+                username=user,
+                password=password
+            )
+
+            if os_type == "linux":
+                cmd = "ip r"
+                result = client.exec_command(cmd)[1].read().decode("866")
+                # print(result)
+                pattern = "default via (\d{0,3}\.\d{0,3}\.\d{0,3}.\d{0,3})"
+                gateways = re.findall(pattern, result)
+                print(f"host: {server} gateway: {gateways[0]}")
+
+    except Exception as e:
+        print(f"host: {server} ERROR: {e}")
+
+
+
+
 
