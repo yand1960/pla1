@@ -7,11 +7,14 @@ results = []
 def measure(n):
     time.sleep(3) # симуляция задержки
     result = 10 * n # симуляция измерения
-    lock.acquire() # один из механизмов синхронизации
+    return result
+
+def collect_result(n):
+    result = measure(n)
+    lock.acquire()  # один из механизмов синхронизации
     # print(n, result)
     results.append([n, result])
     lock.release()
-    return result
 
 if __name__ == "__main__":
 
@@ -22,7 +25,8 @@ if __name__ == "__main__":
 
     pool = []
     for n in range(1, 10):
-        thread = Thread(target=measure, args=(n,))
+        # thread = Thread(target=measure, args=(n,))
+        thread = Thread(target=collect_result, args=(n,))
         pool.append(thread)
         thread.start()
 
