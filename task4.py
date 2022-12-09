@@ -44,6 +44,14 @@ for line in lines:
                 gateways = re.findall(pattern, result)
                 print(f"host: {server} gateway: {gateways[0]}")
 
+            if os_type == "windows":
+                cmd = "print route"
+                result = client.exec_command(cmd)[1].read().decode("866")
+                # print(result)
+                pattern = "\d{0,3}\.\d{0,3}\.\d{0,3}.\d{0,3}"
+                gateways = re.findall(pattern, result)
+                print(f"host: {server} gateway: {gateways[2]}")
+
     except Exception as e:
         print(f"host: {server} ERROR: {e}")
 
