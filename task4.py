@@ -40,15 +40,15 @@ for line in lines:
                 cmd = "ip r"
                 result = client.exec_command(cmd)[1].read().decode("866")
                 # print(result)
-                pattern = "default via (\d{0,3}\.\d{0,3}\.\d{0,3}.\d{0,3})"
+                pattern = "default via (\d{1,3}\.\d{1,3}\.\d{1,3}.\d{1,3})"
                 gateways = re.findall(pattern, result)
                 print(f"host: {server} gateway: {gateways[0]}")
 
             if os_type == "windows":
-                cmd = "print route"
+                cmd = "route print"
                 result = client.exec_command(cmd)[1].read().decode("866")
                 # print(result)
-                pattern = "\d{0,3}\.\d{0,3}\.\d{0,3}.\d{0,3}"
+                pattern = "\d{1,3}\.\d{1,3}\.\d{1,3}.\d{1,3}"
                 gateways = re.findall(pattern, result)
                 print(f"host: {server} gateway: {gateways[2]}")
 
